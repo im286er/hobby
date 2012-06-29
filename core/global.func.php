@@ -32,7 +32,7 @@ function load_conf($config){
 function load_control($control){
 	$control=strtolower($control);
 	$file=UPATH."/app/control/".$control.".ctrl.php";
-	if(!file_exists($file)) Umsg("控制器不存在");
+	if(!file_exists($file)) Umsg("控制器文件不存在".$file);
 	require_once($file);
 }
 
@@ -59,7 +59,7 @@ function modcall($model,$func){
 	}
 	$instance=new $class;
 
-	if(!method_exists($class,$func)){
+	if(!method_exists($instance,$func)){
 		Umsg("该模型不存在方法");
 	}
 	
@@ -104,7 +104,7 @@ function modcall($model,$func){
 
 	if($__print)
 	{
-		if($_GLOBALS["cookie"])
+		if($GLOBALS["cookie"])
 		{
 			header('P3P:CP="IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT"');
 			//header('P3P: CP="NOI DEV PSA PSD IVA PVD OTP OUR OTR IND OTC"');
