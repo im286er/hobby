@@ -20,7 +20,7 @@ function __auto_load($class){
  */
 function load_conf($config){
 	$config=strtolower($config);	
-	$file=UPATH."/data/config/".$config.".php";
+	$file=UPATH."/data/config/".$config.".cfg.php";
 	if(!file_exists($file)) return false;
 	require_once($file);
 }
