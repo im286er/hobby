@@ -1,7 +1,8 @@
 <!DOCTYPE HTML>
 <html>
  <head>
-  <title> New Document </title>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title> usualframe hello world </title>
   <meta name="Generator" content="EditPlus">
   <meta name="Author" content="">
   <meta name="Keywords" content="">
