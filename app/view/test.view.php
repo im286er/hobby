@@ -10,6 +10,6 @@
  </head>
 
  <body>
-   <div style="width:500px;height:200px;background:red;">hello world</div>
+   <div style="width:500px;height:200px;background:red;"><?php echo $test;?></div>
  </body>
 </html>

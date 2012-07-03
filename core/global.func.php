@@ -110,12 +110,7 @@ function BaseCall($module,$className,$method,$args) {
  */
  function load_view($__file, $__data = null, $__print = true){
         
-	$file=UPATH."/app/view/".$__file.".view.php";
-	if(!file_exists($file)) Umsg("视图不存在");
-	ob_start();
-	require_once($file);
-	$__ob_content = ob_get_contents();
-	ob_end_clean();
+	
 
 	!defined("__OUTVIEW__") && define("__OUTVIEW__", 1);
 	if(!is_null($__data))
@@ -140,6 +135,13 @@ function BaseCall($module,$className,$method,$args) {
 		}
 	}
 
+	$file=UPATH."/app/view/".$__file.".view.php";
+	if(!file_exists($file)) Umsg("视图不存在");
+	ob_start();
+	require_once($file);
+	$__ob_content = ob_get_contents();
+	ob_end_clean();
+
 	if($__print)
 	{
 		if(isset($GLOBALS["cookie"]) && $GLOBALS["cookie"])
@@ -152,7 +154,7 @@ function BaseCall($module,$className,$method,$args) {
 			}
 		}
 		unset($GLOBALS["cookie"]);
-
+		
 		header("Content-type:text/html;charset=utf-8");
 		echo $__ob_content;
 	} else return $__ob_content;
