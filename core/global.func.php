@@ -4,7 +4,7 @@
  *@自动加载类库
  *@author usual2970
  */
-function __auto_load($class){
+function __autoload($class){
 	$class=strtolower($class);
 	$file=UPATH."/library/".$class.".php";
 	if(!file_exists($file)){
@@ -19,10 +19,16 @@ function __auto_load($class){
  *@author usual2970
  */
 function load_conf($config){
-	$config=strtolower($config);	
+	$config=strtolower($config);
+	if(isset($GLOBALS["conf"]) && $GLOBALS["conf"][$config]){
+		return $GLOBALS["conf"][$config];
+	}
+		
 	$file=UPATH."/data/config/".$config.".cfg.php";
+	$conf=array();
 	if(!file_exists($file)) return false;
 	require_once($file);
+	return $conf;
 }
 
 /*
@@ -50,23 +56,55 @@ function load_model($model){
 /*
  *@调用某个模型的方法
  */
-function modcall($model,$func){
+function modcall($model,$func,$args){
 	load_model($model);
-	$class=ucfirst($model)."."."Model";
-
+	$class=ucfirst($model)."Model";
 	if(!class_exists($class)){
 		Umsg("模型无效");
 	}
-	$instance=new $class;
-
-	if(!method_exists($instance,$func)){
-		Umsg("该模型不存在方法");
-	}
 	
-	$instance->$func();
-
+	$rs=BaseCall("ctl",$class,$func,$args);
+	return $rs;
 }
 
+/*
+ *@加载dao
+ *@author usual2970
+ */
+function load_dao($dao){
+	$model=strtolower($dao);
+	$file=UPATH."/app/dao/".$dao.".dao.php";
+	if(!file_exists($file)) Umsg("DAO文件".$file."不存在");
+	require_once($file);
+}
+
+/*
+ *@调用某个DAO的方法
+ */
+function daocall($dao,$func,$args){
+	load_dao($dao);
+	$class=ucfirst($dao)."Dao";
+	if(!class_exists($class)){
+		Umsg("Dao:".$dao."无效");
+	}
+	
+	$rs=BaseCall("ctl",$class,$func,$args);
+	return $rs;
+}
+/*
+ *@调用方法最底层
+ */
+function BaseCall($module,$className,$method,$args) {
+	$object	= $module == 'ctl' ? new $className : $className;
+	if($object && method_exists($object, $method))
+	{
+		$result = call_user_func_array(array($object, $method), $args);
+	
+		return $result;
+	} else {
+		return false;
+	}
+}
 /*
  *@加载视图
  */
@@ -104,16 +142,16 @@ function modcall($model,$func){
 
 	if($__print)
 	{
-		if($GLOBALS["cookie"])
+		if(isset($GLOBALS["cookie"]) && $GLOBALS["cookie"])
 		{
 			header('P3P:CP="IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT"');
 			//header('P3P: CP="NOI DEV PSA PSD IVA PVD OTP OUR OTR IND OTC"');
-			foreach($__core_env["cookie"] as $cn => $cv)
+			foreach($GLOBALS["cookie"] as $cn => $cv)
 			{
 				@setcookie($cn, $cv["value"], $cv["expire"], $cv["path"], $cv["domain"]);
 			}
 		}
-		unset($__core_env["cookie"]);
+		unset($GLOBALS["cookie"]);
 
 		header("Content-type:text/html;charset=utf-8");
 		echo $__ob_content;

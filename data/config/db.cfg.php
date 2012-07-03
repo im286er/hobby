@@ -1,8 +1,8 @@
 <?php
-	$dbcfg=array(
+	$conf=array(
 		"host"=>"localhost",
 		"username"=>"root",
 		"password"=>"123456",
-		"database"=>"usual2970"
+		"database"=>"emlog"
 	);
 ?>

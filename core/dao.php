@@ -5,23 +5,24 @@
 class Dao{
 	var $config;
 	var $connect;
-
+	var $lastqueryid;
 	function __construct() {
 		$this->config=load_conf("db");
-		$this->_dbconnect($this->host,$this->username,$this->password);
+		$this->_dbconnect($this->config['host'],$this->config['username'],$this->config['password']);
 	}
 
 	//CURD中的READ
-	function read($data, $table, $where = '', $limit = '', $order = ''){
+	function read($data, $table, $where = '', $limit = '', $order = '',$group='',$key=""){
 		$where = $where == '' ? '' : ' WHERE '.$where;
 		$order = $order == '' ? '' : ' ORDER BY '.$order;
 		$group = $group == '' ? '' : ' GROUP BY '.$group;
 		$limit = $limit == '' ? '' : ' LIMIT '.$limit;
 		$field = explode(',', $data);
-		array_walk($field, array($this, 'add_special_char'));
+		array_walk($field, array($this, '_add_special_char'));
 		$data = implode(',', $field);
 
 		$sql = 'SELECT '.$data.' FROM `'.$this->config['database'].'`.`'.$table.'`'.$where.$group.$order.$limit;
+		
 		$rs=$this->_execute($sql);
 		if(!is_resource($rs)) return $rs;
 
@@ -33,7 +34,7 @@ class Dao{
 				$datalist[] = $rs;
 			}
 		}
-		$this->_free_result($rs);
+		$this->_free_result();
 		return $datalist;
 
 	}
@@ -119,7 +120,7 @@ class Dao{
 	function _fetch_next($type=MYSQL_ASSOC) {
 		$res = mysql_fetch_array($this->lastqueryid, $type);
 		if(!$res) {
-			$this->free_result();
+			$this->_free_result();
 		}
 		return $res;
 	}
@@ -128,15 +129,16 @@ class Dao{
 	 * 释放查询资源
 	 * @return void
 	 */
-	function _free_result($rs) {
-		if(is_resource($rs)) {
-			mysql_free_result($rs);
+	function _free_result() {
+		if(is_resource($this->lastqueryid)) {
+			mysql_free_result($this->lastqueryid);
 		}
+		$this->lastqueryid=null;
 	}
 
 	//建立数据库连接
 	function _dbconnect($host="",$username="",$password="") {
-		if(!$this->connect=@mysql_connect($this->config["host"],$this->config["username"],$this->config["password"]),1){
+		if(!$this->connect=@mysql_connect($this->config["host"],$this->config["username"],$this->config["password"],1)){
 			return false;
 		}
 
@@ -145,16 +147,17 @@ class Dao{
 		if($this->config["database"] && !@mysql_select_db($this->config["database"],$this->connect)){
 			return false;
 		}
-		return $this->connect();
+		return $this->connect;
 	}
 	
 	//执行SQL语句
 	function _execute($sql){
 		if(!is_resource($this->connect)){
-			$this->dbconnect();
+			$this->_dbconnect();
 		}
 	
-		return @mysql_query($sql,$this->connect);
+		$this->lastqueryid=@mysql_query($sql,$this->connect);
+		return $this->lastqueryid;
 	}
 
 	//返回上一次执行的SQL影响的行数
