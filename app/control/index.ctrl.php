@@ -2,7 +2,7 @@
 class IndexControl extends Control{
 
 	function index(){
-		load_view("test",array("test"=>"hello world"));
+		echo site_url();
 	}
 	function test(){
 
