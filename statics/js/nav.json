@@ -1,0 +1,34 @@
+[{  
+    "id":1,  
+    "text":"About管理",   
+    "children":[{  
+        "text":"IDEA管理",
+		"state":"open",
+		"attributes":{  
+            "url":"/demo/book/abc",  
+            "price":100  
+        }
+    },{  
+        "text":"Books",  
+        "state":"open",  
+        "attributes":{  
+            "url":"/demo/book/abc"
+        }
+    }]  
+},{  
+    "text":"Project管理",  
+    "state":"open",  
+    "children":[{  
+        "text":"Brading管理",
+	"state":"open",
+	"attributes":{
+		url":"/demo/book/abc"
+	}
+    },{  
+        "text":"Signage管理",
+	"state":"open",
+	"attributes":{
+		url":"/demo/book/abc"
+	}
+    }]  
+}] 

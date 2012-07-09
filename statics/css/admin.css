@@ -1,0 +1,53 @@
+/**********************公共部分**********************/
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote, th, td { 
+margin: 0; 
+padding: 0; 
+border:none;
+}
+body{
+	text-align:center;
+	font-size:12px;
+	font-family:arial,georgia,arial;
+	background:#fff;
+	
+}
+
+.clearfix:after{ 
+    content:"."; 
+    display:block; 
+    height:0; 
+    clear:both; 
+    visibility:hidden; 
+} 
+ 
+* html .clearfix{ 
+    height:1%; 
+}
+
+#header{
+	width:200px;
+	float:left;
+	text-align:left;
+	border:1px solid #73abcd;
+	height:600px;
+	border-right:5px solid #d2e0f2;
+}
+
+#header #nav_title{
+	height:30px;
+	line-height:30px;
+	border-bottom:1px solid #99bbe8;
+	color:#15428b;
+	font-size:14px;
+	font-weight:bold;
+	background:url(../images/panel_title.png) repeat-x 0 0;
+	padding-left:15px;
+
+}
+#main{
+	float:left;
+	width:900px;
+	height:600px;
+	border:1px solid #73abcd;
+	border-left:none;
+}
