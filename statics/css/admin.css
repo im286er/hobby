@@ -5,7 +5,6 @@ padding: 0;
 border:none;
 }
 body{
-	text-align:center;
 	font-size:12px;
 	font-family:arial,georgia,arial;
 	background:#fff;
@@ -50,4 +49,49 @@ body{
 	height:600px;
 	border:1px solid #73abcd;
 	border-left:none;
+}
+
+#uploadpic{
+	padding:10px;
+}
+
+#menubar{
+	padding:5px 20px;
+	background:#e8e8e8;
+	text-align:left;
+}
+
+#uploadpic #picform{
+	border:1px solid #99bbe8;padding:10px;
+}
+#margin10{
+	height:10px;
+
+}
+
+#uploadpic #picform p{
+	text-align:left;
+	overflow:hidden;
+	border-bottom:1px solid #73abcd;
+	padding:10px;
+}
+
+#uploadpic #picform #pic_name{
+	border:1px solid #73abcd;
+	width:200px;
+	height:30px;
+}
+#uploadpic #picform textarea{
+	width:500px;
+	height:200px;
+	border:1px solid #73abcd;
+}
+#idea_submit{
+	padding-left:25px;
+	cursor:pointer;
+}
+#idea_reset{
+	padding-left:25px;
+	cursor:pointer;
+
 }

@@ -6,6 +6,7 @@
   <meta name="Keywords" content="">
   <meta name="Description" content="">
   <link type="text/css" href="<?php echo $site_url?>/statics/js/jqueryeasyui/themes/default/easyui.css" rel="stylesheet"></link>
+  <link type="text/css" href="<?php echo $site_url?>/statics/js/jqueryeasyui/themes/icon.css" rel="stylesheet"></link>
   <link type="text/css" href="<?php echo $site_url?>/statics/css/admin.css" rel="stylesheet"></link>
  </head>
 
@@ -15,15 +16,15 @@
 		<ul id="nav">
 			<li><span>ABOUT管理</span>
 				<ul>
-					<li id="index.php"><span>idea管理</span></li>
-					<li><span>ART&CRAFTS</span></li>
+					<li id="index.php?c=admin&a=idea"><span>idea管理</span></li>
+					<li id="index.php"><span>ART&CRAFTS</span></li>
 				</ul>
 			</li>
 			
 			<li><span>PROJECT管理</span>
 				<ul>
-					<li><span>branding管理</span></li>
-					<li><span>signage管理</span></li>
+					<li id="index.php"><span>branding管理</span></li>
+					<li id="index.php"><span>signage管理</span></li>
 				</ul>
 			
 			</li>

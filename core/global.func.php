@@ -27,7 +27,7 @@ function load_conf($config){
 	$file=UPATH."/data/config/".$config.".cfg.php";
 	$conf=array();
 	if(!file_exists($file)) return false;
-	require_once($file);
+	require($file);
 	return $conf;
 }
 

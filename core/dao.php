@@ -7,7 +7,9 @@ class Dao{
 	var $connect;
 	var $lastqueryid;
 	function __construct() {
-		$this->config=load_conf("db");
+		if(!$this->config){
+			$this->config=load_conf("db");
+		}
 		$this->_dbconnect($this->config['host'],$this->config['username'],$this->config['password']);
 	}
 
@@ -22,7 +24,6 @@ class Dao{
 		$data = implode(',', $field);
 
 		$sql = 'SELECT '.$data.' FROM `'.$this->config['database'].'`.`'.$table.'`'.$where.$group.$order.$limit;
-		
 		$rs=$this->_execute($sql);
 		if(!is_resource($rs)) return $rs;
 
@@ -99,14 +100,15 @@ class Dao{
 		
 		$fielddata = array_keys($data);
 		$valuedata = array_values($data);
-		array_walk($fielddata, array($this, 'add_special_char'));
-		array_walk($valuedata, array($this, 'escape_string'));
+		array_walk($fielddata, array($this, '_add_special_char'));
+		array_walk($valuedata, array($this, '_escape_string'));
 		
 		$field = implode (',', $fielddata);
 		$value = implode (',', $valuedata);
 
 		$cmd = $replace ? 'REPLACE INTO' : 'INSERT INTO';
 		$sql = $cmd.' `'.$this->config['database'].'`.`'.$table.'`('.$field.') VALUES ('.$value.')';
+		echo $sql;
 		$return = $this->_execute($sql);
 		return $return_insert_id ? $this->_last_insert_id() : $return;
 	}
