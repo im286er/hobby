@@ -1,0 +1,24 @@
+<?xml version="1.0" standalone="yes"?>
+<RECORDS>
+<RECORD>
+<albulm_id>14</albulm_id>
+<albulm_name>china</albulm_name>
+<albulm_desc>china</albulm_desc>
+<belong_to>idea</belong_to>
+<add_time>1342251148</add_time>
+</RECORD>
+<RECORD>
+<albulm_id>17</albulm_id>
+<albulm_name>project</albulm_name>
+<albulm_desc>test</albulm_desc>
+<belong_to>idea</belong_to>
+<add_time>1342945448</add_time>
+</RECORD>
+<RECORD>
+<albulm_id>13</albulm_id>
+<albulm_name>test</albulm_name>
+<albulm_desc>test</albulm_desc>
+<belong_to>idea</belong_to>
+<add_time>1342249127</add_time>
+</RECORD>
+</RECORDS>

@@ -1,0 +1,67 @@
+<?xml version="1.0" standalone="yes"?>
+<RECORDS>
+<RECORD>
+<id>6</id>
+<pic_name>albulm13_cover</pic_name>
+<pic_desc>albulm13_cover</pic_desc>
+<location>/statics/images/idea/idea1342249128.jpg</location>
+<belong_to>idea</belong_to>
+<albulm_id>13</albulm_id>
+<add_time>1342249128</add_time>
+<is_cover>1</is_cover>
+</RECORD>
+<RECORD>
+<id>7</id>
+<pic_name>albulm14_cover</pic_name>
+<pic_desc>albulm14_cover</pic_desc>
+<location>/statics/images/idea/idea1342251149.jpg</location>
+<belong_to>idea</belong_to>
+<albulm_id>14</albulm_id>
+<add_time>1342251149</add_time>
+<is_cover>1</is_cover>
+</RECORD>
+<RECORD>
+<id>8</id>
+<pic_name>usual2970</pic_name>
+<pic_desc>qqwerqwerq</pic_desc>
+<location>/statics/images/idea/idea1342256180.jpg</location>
+<belong_to>idea</belong_to>
+<albulm_id></albulm_id>
+<add_time>1342256180</add_time>
+<is_cover></is_cover>
+</RECORD>
+<RECORD>
+<id>9</id>
+<pic_name>usual2970</pic_name>
+<pic_desc>{
+		url:&quot;index.php?c=admin&amp;a=albulm_list&amp;belong_to=idea&quot;,
+		valueField:&quot;albulm_id&quot;,
+		textField:&quot;albulm_name&quot;
+	}</pic_desc>
+<location>/statics/images/idea/idea1342256315.jpg</location>
+<belong_to>idea</belong_to>
+<albulm_id></albulm_id>
+<add_time>1342256315</add_time>
+<is_cover></is_cover>
+</RECORD>
+<RECORD>
+<id>10</id>
+<pic_name>usual2970</pic_name>
+<pic_desc>$pic_desc=trim($_POST[&quot;desc&quot;]);</pic_desc>
+<location>/statics/images/idea/idea1342256447.jpg</location>
+<belong_to>idea</belong_to>
+<albulm_id>14</albulm_id>
+<add_time>1342256447</add_time>
+<is_cover></is_cover>
+</RECORD>
+<RECORD>
+<id>12</id>
+<pic_name>albulm17_cover</pic_name>
+<pic_desc>albulm17_cover</pic_desc>
+<location>/statics/images/idea/idea1342945449.jpg</location>
+<belong_to>idea</belong_to>
+<albulm_id>17</albulm_id>
+<add_time>1342945449</add_time>
+<is_cover>1</is_cover>
+</RECORD>
+</RECORDS>
