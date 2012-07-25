@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	$("#pic_display li").live("dblclick",function(){
+	$("#pic_display li").live("click",function(){
 		var albulm_id=$(this).find("#albulm_id").val();
 		$("#main_content").tabs("add",{
 			title:"相册图片",
@@ -8,6 +8,7 @@ $(document).ready(function(){
 		
 		});
 	});
+
 
 });
 

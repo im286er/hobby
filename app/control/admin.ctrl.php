@@ -10,11 +10,63 @@ class AdminControl extends Control{
 	
 
 	function idea() {
-		load_view("idea_manage");
+		$belong_to=isset($_GET["a"])?trim($_GET["a"]):"idea";
+		$rs=daocall("admin","get_albulm",array("","belong_to='{$belong_to}'"));
+		$pic_rs=daocall("admin","get_cover",array());
+		foreach($rs as $k=>$v){
+			foreach($pic_rs as $subk=>$subv){
+				if($subv["albulm_id"]==$v["albulm_id"]){
+				
+					$rs[$k]["cover"]=$subv["location"];
+				}
+			}
+		
+		}
+		load_view("albulm",array("albulms"=>$rs,"belong_to"=>$belong_to));
 	}
 
+	function branding() {
+		$belong_to=isset($_GET["a"])?trim($_GET["a"]):"idea";
+		
+		$rs=daocall("admin","get_albulm",array("","belong_to='{$belong_to}'"));
+		$pic_rs=daocall("admin","get_cover",array());
+		if($rs){
+			foreach($rs as $k=>$v){
+				foreach($pic_rs as $subk=>$subv){
+					if($subv["albulm_id"]==$v["albulm_id"]){
+					
+						$rs[$k]["cover"]=$subv["location"];
+					}
+				}
+			
+			}
+		}
+		load_view("albulm",array("albulms"=>$rs,"belong_to"=>$belong_to));
+	}
+	
+	
+	function signage() {
+		$belong_to=isset($_GET["a"])?trim($_GET["a"]):"idea";
+		$rs=daocall("admin","get_albulm",array("","belong_to='{$belong_to}'"));
+		$pic_rs=daocall("admin","get_cover",array());
+
+		if($rs){
+			foreach($rs as $k=>$v){
+				foreach($pic_rs as $subk=>$subv){
+					if($subv["albulm_id"]==$v["albulm_id"]){
+					
+						$rs[$k]["cover"]=$subv["location"];
+					}
+				}
+			
+			}
+		}
+		load_view("albulm",array("albulms"=>$rs,"belong_to"=>$belong_to));
+	}
+
+
 	function idea_upload_form() {
-		load_view("idea");
+		load_view("upload_pic");
 	}
 
 	function upload_pic() {
@@ -79,6 +131,7 @@ class AdminControl extends Control{
 
 	function get_category() {
 		$rs=daocall("admin","get_category",array("cat_name,cat_name",""));
+		
 		echo json_encode($rs);
 	}
 

@@ -23,8 +23,8 @@
 			
 			<li><span>PROJECT管理</span>
 				<ul>
-					<li id="index.php"><span>branding管理</span></li>
-					<li id="index.php"><span>signage管理</span></li>
+					<li id="index.php?c=admin&a=branding"><span>branding管理</span></li>
+					<li id="index.php?c=admin&a=signage"><span>signage管理</span></li>
 				</ul>
 			
 			</li>

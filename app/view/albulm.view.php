@@ -20,7 +20,7 @@
 			}
 			else{
 				foreach($albulms as $k=>$v){
-					echo "<li><div><img src='{$site_url}/{$v['cover']}' border='0' width='160' height='160'/></div><div id='name'>{$v['albulm_name']}</div><input type='hidden' id='albulm_id' value='{$v['albulm_id']}'/></li>";
+					echo "<li id='albulm_grid'><div><img src='{$site_url}/{$v['cover']}' border='0' width='160' height='160'/></div><div id='name'>{$v['albulm_name']}</div><input type='hidden' id='albulm_id' value='{$v['albulm_id']}'/></li>";
 				}
 			
 			}
@@ -41,6 +41,9 @@
 	<p><label>所属类目:</label><select name="belong_to" id="belong_to"></select></p>
 </form>
 </div>
+
+
+
 <script>
 var fields=[[
 	{field:"albulm_name",title:"相册名称",width:"180",editor:{type:"text"}},
@@ -48,7 +51,8 @@ var fields=[[
 	{field:"belong_to",title:"归属于",width:"180"},
 	{field:"add_time",title:"添加时间",width:"180"}
 ]];
-
+	
+var belong_to="<?php echo $belong_to;?>";
 $(document).ready(function(){
 	$("#add_albulm").linkbutton({plain:false});
 	
@@ -67,11 +71,13 @@ $(document).ready(function(){
 	
 	$("#belong_to").combobox({
 		url:"index.php?c=admin&a=get_category",
-		valueField:"cat_id",
+		valueField:"cat_name",
 		textField:"cat_name"
 	
 	});
-	$("#belong_to").combobox("select",1);
+	$("#belong_to").combobox("select",belong_to);
+
+	
 
 });
 	
